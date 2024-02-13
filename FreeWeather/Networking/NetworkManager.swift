@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import Alamofire
 
 
 enum APIError: Error 
@@ -21,14 +21,16 @@ enum APIError: Error
 
 protocol APIManagerProtocol 
 {
-    func fetchData(from url: URL, completion: @escaping (Result<Data, APIError>) -> Void)
+    func fetchDataViaURLSession(from url: URL, completion: @escaping (Result<Data, APIError>) -> Void)
+    func fetchDataViaAlamofire(from url: URL, headers: HTTPHeaders?, completion: @escaping (Result<Data, APIError>) -> Void)
 }
 
 
 
 class APIManager: APIManagerProtocol
 {
-    func fetchData(from url: URL, completion: @escaping (Result<Data, APIError>) -> Void) {
+    func fetchDataViaURLSession(from url: URL, completion: @escaping (Result<Data, APIError>) -> Void) 
+    {
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
                 completion(.failure(.networkError(error)))
@@ -47,5 +49,29 @@ class APIManager: APIManagerProtocol
             
             completion(.success(data))
         }.resume()
+    }
+    
+    
+    
+    func fetchDataViaAlamofire(from url: URL, headers: HTTPHeaders? = nil, completion: @escaping (Result<Data, APIError>) -> Void)
+    {
+        AF.request(url, headers: headers).validate(statusCode: 200..<300).responseData { response in
+            if let error = response.error {
+                completion(.failure(.networkError(error)))
+                return
+            }
+            
+            guard let httpResponse = response.response, (200...299).contains(httpResponse.statusCode) else {
+                completion(.failure(.invalidResponse))
+                return
+            }
+            
+            guard let data = response.data else {
+                completion(.failure(.invalidResponse))
+                return
+            }
+            
+            completion(.success(data))
+        }
     }
 }
