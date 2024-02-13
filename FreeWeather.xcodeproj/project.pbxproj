@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		23183D4395B488208CF1C402 /* Pods_FreeWeather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7779120580C56AA04FCBB75A /* Pods_FreeWeather.framework */; };
 		F42D8EDD2B7BE72700B19C06 /* UIColor-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42D8EDC2B7BE72700B19C06 /* UIColor-Extension.swift */; };
+		F42D8EE22B7BE82B00B19C06 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42D8EE12B7BE82B00B19C06 /* Observable.swift */; };
 		F47635E02B7B8DE40015F4A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47635DF2B7B8DE40015F4A2 /* AppDelegate.swift */; };
 		F47635E22B7B8DE40015F4A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47635E12B7B8DE40015F4A2 /* SceneDelegate.swift */; };
 		F47635E92B7B8DE50015F4A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F47635E82B7B8DE50015F4A2 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 		95EA0B0BCA22BAC65A505E79 /* Pods-FreeWeather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FreeWeather.release.xcconfig"; path = "Target Support Files/Pods-FreeWeather/Pods-FreeWeather.release.xcconfig"; sourceTree = "<group>"; };
 		A63B07BEF1C453CBC9AC16E1 /* Pods-FreeWeather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FreeWeather.debug.xcconfig"; path = "Target Support Files/Pods-FreeWeather/Pods-FreeWeather.debug.xcconfig"; sourceTree = "<group>"; };
 		F42D8EDC2B7BE72700B19C06 /* UIColor-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor-Extension.swift"; sourceTree = "<group>"; };
+		F42D8EE12B7BE82B00B19C06 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		F47635DC2B7B8DE40015F4A2 /* FreeWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F47635DF2B7B8DE40015F4A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F47635E12B7B8DE40015F4A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +90,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		F42D8EE02B7BE81900B19C06 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F42D8EE12B7BE82B00B19C06 /* Observable.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		F47635D32B7B8DE40015F4A2 = {
 			isa = PBXGroup;
 			children = (
@@ -110,8 +120,9 @@
 			isa = PBXGroup;
 			children = (
 				F42D8EDE2B7BE75D00B19C06 /* AppLevel */,
-				F47635F62B7BB7FF0015F4A2 /* Models */,
 				F47635F32B7BAD4A0015F4A2 /* Networking */,
+				F42D8EE02B7BE81900B19C06 /* Classes */,
+				F47635F62B7BB7FF0015F4A2 /* Models */,
 				F42D8EDB2B7BE71000B19C06 /* Extensions */,
 				F42D8EDF2B7BE77B00B19C06 /* Resources */,
 				F47635EA2B7B8DE50015F4A2 /* LaunchScreen.storyboard */,
@@ -254,6 +265,7 @@
 				F47635FA2B7BD39F0015F4A2 /* NetworkConstants.swift in Sources */,
 				F47635F52B7BAD5B0015F4A2 /* NetworkManager.swift in Sources */,
 				F47635E02B7B8DE40015F4A2 /* AppDelegate.swift in Sources */,
+				F42D8EE22B7BE82B00B19C06 /* Observable.swift in Sources */,
 				F47635E22B7B8DE40015F4A2 /* SceneDelegate.swift in Sources */,
 				F42D8EDD2B7BE72700B19C06 /* UIColor-Extension.swift in Sources */,
 				F47635F82B7BB8290015F4A2 /* WeatherModel.swift in Sources */,
