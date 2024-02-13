@@ -12,8 +12,8 @@ class BaseViewModel
 {
     var apiManager: APIManagerProtocol = APIManager()
     
-    var location: Observable<String> = Observable("")
-    var currentTemp: Observable<String> = Observable("0")
+    var location: Observable<String> = Observable("--")
+    var currentTemp: Observable<String> = Observable("-°C")
     
     
     

@@ -31,7 +31,7 @@ extension BaseViewController
     {
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = ""
+        label.text = "--"
         label.font = .boldSystemFont(ofSize: 54)
         label.textColor = .black
         self.view.addSubview(label)
@@ -49,7 +49,7 @@ extension BaseViewController
     {
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = "0°C"
+        label.text = "-°C"
         label.font = .boldSystemFont(ofSize: 47)
         label.textColor = .black
         self.view.addSubview(label)
