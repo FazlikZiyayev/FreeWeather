@@ -12,7 +12,8 @@ class BaseViewController: UIViewController
 {
     let baseViewModel = BaseViewModel()
     
-    var baseTempLabel = UILabel()
+    var locationLabel = UILabel()
+    var currentTempLabel = UILabel()
     
     
     override func viewDidLoad()
@@ -20,6 +21,7 @@ class BaseViewController: UIViewController
         super.viewDidLoad()
         
         self.baseViewModel.fetchCurrentTemp()
+        
         self.create_uiComponents()
         self.bind_elements()
     }
@@ -40,11 +42,31 @@ extension BaseViewController
 {
     func bind_elements()
     {
+        self.bind_location()
+        self.bind_currentTemp()
+    }
+    
+    
+    
+    func bind_location()
+    {
+        self.baseViewModel.location.bind { [weak self] location in
+            guard let safeSelf = self,
+                  let safeLocation = location else { return }
+            
+            safeSelf.locationLabel.text = safeLocation
+        }
+    }
+    
+    
+    
+    func bind_currentTemp()
+    {
         self.baseViewModel.currentTemp.bind { [weak self] currentTemp in
-            guard let self = self,
+            guard let safeSelf = self,
                   let safeCurrentTemp = currentTemp else { return }
             
-            baseTempLabel.text = "\(safeCurrentTemp)°C"
+            safeSelf.currentTempLabel.text = "\(safeCurrentTemp)°C"
         }
     }
 }

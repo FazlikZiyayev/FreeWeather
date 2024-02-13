@@ -13,7 +13,8 @@ extension BaseViewController
 {
     func create_uiComponents()
     {
-        self.baseTempLabel = self.create_baseTempLabel()
+        self.locationLabel = self.create_locationLabel()
+        self.currentTempLabel = self.create_currentTempLabel()
     }
     
     
@@ -26,7 +27,25 @@ extension BaseViewController
     
     
     
-    func create_baseTempLabel() -> UILabel
+    func create_locationLabel() -> UILabel
+    {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.text = ""
+        label.font = .boldSystemFont(ofSize: 54)
+        label.textColor = .black
+        self.view.addSubview(label)
+        label.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(50)
+            make.centerX.equalToSuperview()
+        }
+        
+        
+        return label
+    }
+    
+    
+    func create_currentTempLabel() -> UILabel
     {
         let label = UILabel()
         label.numberOfLines = 0
@@ -35,7 +54,7 @@ extension BaseViewController
         label.textColor = .black
         self.view.addSubview(label)
         label.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(50)
+            make.top.equalTo(self.locationLabel.snp.bottom).offset(20)
             make.centerX.equalToSuperview()
         }
         

@@ -12,6 +12,7 @@ class BaseViewModel
 {
     var apiManager: APIManagerProtocol = APIManager()
     
+    var location: Observable<String> = Observable("")
     var currentTemp: Observable<String> = Observable("0")
     
     
@@ -40,7 +41,7 @@ class BaseViewModel
             case .success(let data):
                 do {
                     let result = try JSONDecoder().decode(WeatherResponse.self, from: data)
-                    print(result)
+                    self.location.value = result.location.name
                     self.currentTemp.value = "\(Int(result.current.temp_c))"
                     
                 } catch {
