@@ -13,6 +13,7 @@
 		F42D8EE52B7BE88700B19C06 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42D8EE42B7BE88700B19C06 /* BaseViewController.swift */; };
 		F42D8EE72B7BE89900B19C06 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42D8EE62B7BE89900B19C06 /* BaseViewModel.swift */; };
 		F42D8EE92B7BE8B400B19C06 /* BaseView-UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42D8EE82B7BE8B400B19C06 /* BaseView-UI.swift */; };
+		F42D8EEB2B7C001C00B19C06 /* ForecastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42D8EEA2B7C001C00B19C06 /* ForecastModel.swift */; };
 		F47635E02B7B8DE40015F4A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47635DF2B7B8DE40015F4A2 /* AppDelegate.swift */; };
 		F47635E92B7B8DE50015F4A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F47635E82B7B8DE50015F4A2 /* Assets.xcassets */; };
 		F47635EC2B7B8DE50015F4A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47635EA2B7B8DE50015F4A2 /* LaunchScreen.storyboard */; };
@@ -30,6 +31,7 @@
 		F42D8EE42B7BE88700B19C06 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F42D8EE62B7BE89900B19C06 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		F42D8EE82B7BE8B400B19C06 /* BaseView-UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseView-UI.swift"; sourceTree = "<group>"; };
+		F42D8EEA2B7C001C00B19C06 /* ForecastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastModel.swift; sourceTree = "<group>"; };
 		F47635DC2B7B8DE40015F4A2 /* FreeWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F47635DF2B7B8DE40015F4A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F47635E82B7B8DE50015F4A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				F47635F72B7BB8290015F4A2 /* WeatherModel.swift */,
+				F42D8EEA2B7C001C00B19C06 /* ForecastModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				F42D8EE72B7BE89900B19C06 /* BaseViewModel.swift in Sources */,
 				F42D8EE52B7BE88700B19C06 /* BaseViewController.swift in Sources */,
 				F42D8EDD2B7BE72700B19C06 /* UIColor-Extension.swift in Sources */,
+				F42D8EEB2B7C001C00B19C06 /* ForecastModel.swift in Sources */,
 				F47635F82B7BB8290015F4A2 /* WeatherModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

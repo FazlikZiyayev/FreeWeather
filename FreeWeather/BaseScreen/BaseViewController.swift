@@ -21,6 +21,7 @@ class BaseViewController: UIViewController
         super.viewDidLoad()
         
         self.baseViewModel.fetchCurrentTemp()
+        self.baseViewModel.fetchForecastDays()
         
         self.create_uiComponents()
         self.bind_elements()
