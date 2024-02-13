@@ -39,18 +39,18 @@ class BaseViewController: UIViewController
     
     
     
-    func dayName(from dateString: String) -> String? {
+    func dayName(from dateString: String) -> String? 
+    {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
-        if let date = dateFormatter.date(from: dateString) {
+        if let date = dateFormatter.date(from: dateString)
+        {
             let calendar = Calendar.current
             
-            if calendar.isDateInToday(date) {
-                return "Today"
-            } else if calendar.isDateInTomorrow(date) {
-                return "Tomorrow"
-            } else {
+            if calendar.isDateInToday(date) { return "Today" }
+            else if calendar.isDateInTomorrow(date) { return "Tomorrow" }
+            else {
                 let dayFormatter = DateFormatter()
                 dayFormatter.dateFormat = "EEEE"
                 return dayFormatter.string(from: date)
@@ -103,7 +103,7 @@ extension BaseViewController
     {
         self.baseViewModel.forecastResponse.bind { [weak self] forecastDays in
             guard let safeSelf = self,
-                  let safeCurrentTemp = forecastDays else { return }
+                  let _ = forecastDays else { return }
             
             safeSelf.forecastDaysTableView.reloadData()
         }
@@ -115,7 +115,8 @@ extension BaseViewController
 extension BaseViewController: UITableViewDelegate, UITableViewDataSource
 {
     // MARK: UITableViewDataSource
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int 
+    {
         return self.baseViewModel.getForecastDaysCount()
     }
     
