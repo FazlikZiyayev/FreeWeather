@@ -21,7 +21,7 @@ class NetworkConstants
     public var serverEndpoint: String
     {
         get {
-            return "http://api.weatherapi.com/v1"
+            return "https://api.weatherapi.com/v1/"
         }
     }
     
