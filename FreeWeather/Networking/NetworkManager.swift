@@ -55,7 +55,7 @@ class APIManager: APIManagerProtocol
     
     func fetchDataViaAlamofire(from url: URL, headers: HTTPHeaders? = nil, completion: @escaping (Result<Data, APIError>) -> Void)
     {
-        AF.request(url, headers: headers).validate(statusCode: 200..<300).responseData { response in
+        AF.request(url, headers: headers).validate(statusCode: 200..<299).responseData { response in
             if let error = response.error {
                 completion(.failure(.networkError(error)))
                 return
