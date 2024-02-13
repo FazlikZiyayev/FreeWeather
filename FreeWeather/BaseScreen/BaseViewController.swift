@@ -15,6 +15,8 @@ class BaseViewController: UIViewController
     var locationLabel = UILabel()
     var currentTempLabel = UILabel()
     
+    var forecastDaysTableView = UITableView()
+    
     
     override func viewDidLoad()
     {
@@ -45,6 +47,7 @@ extension BaseViewController
     {
         self.bind_location()
         self.bind_currentTemp()
+        self.bind_forecastDays()
     }
     
     
@@ -69,5 +72,54 @@ extension BaseViewController
             
             safeSelf.currentTempLabel.text = "\(safeCurrentTemp)°C"
         }
+    }
+    
+    
+    
+    func bind_forecastDays()
+    {
+        self.baseViewModel.forecastResponse.bind { [weak self] forecastDays in
+            guard let safeSelf = self,
+                  let safeCurrentTemp = forecastDays else { return }
+            
+            safeSelf.forecastDaysTableView.reloadData()
+        }
+    }
+}
+
+
+
+extension BaseViewController: UITableViewDelegate, UITableViewDataSource
+{
+    // MARK: UITableViewDataSource
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let safeForecastResponse = self.baseViewModel.forecastResponse.value
+        {
+            return safeForecastResponse?.forecast.forecastday.count ?? 0
+        }
+        
+        return 0
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell 
+    {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ForecastSingleDayCell", for: indexPath)
+        
+        if let safeForecast = self.baseViewModel.forecastResponse.value,
+           let safeForecastDay = safeForecast?.forecast.forecastday[indexPath.row]
+        {
+            cell.textLabel?.text = "\(String(safeForecastDay.date))"
+        }
+        
+        return cell
+    }
+    
+    
+    
+    // MARK: UITableViewDelegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

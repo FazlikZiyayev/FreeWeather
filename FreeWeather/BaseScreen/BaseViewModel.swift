@@ -15,7 +15,7 @@ class BaseViewModel
     var location: Observable<String> = Observable("--")
     var currentTemp: Observable<String> = Observable("-°C")
     
-    var daysTemp: Observable<[WeatherResponse]> = Observable([])
+    var forecastResponse: Observable<ForecastResponse?> = Observable(nil)
     
     
     
@@ -75,8 +75,7 @@ class BaseViewModel
             case .success(let data):
                 do {
                     let result = try JSONDecoder().decode(ForecastResponse.self, from: data)
-                    print(result)
-                    
+                    self.forecastResponse.value = result
                 } catch {
                     print(error)
                 }

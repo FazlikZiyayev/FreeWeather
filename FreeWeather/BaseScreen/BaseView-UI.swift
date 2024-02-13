@@ -15,6 +15,8 @@ extension BaseViewController
     {
         self.locationLabel = self.create_locationLabel()
         self.currentTempLabel = self.create_currentTempLabel()
+        
+        self.forecastDaysTableView = self.create_forecastDaysTableView()
     }
     
     
@@ -60,5 +62,27 @@ extension BaseViewController
         
         
         return label
+    }
+    
+    
+    
+    func create_forecastDaysTableView() -> UITableView
+    {
+        let tb = UITableView()
+        tb.delegate = self
+        tb.dataSource = self
+        tb.register(ForecastSingleDayCell.self, forCellReuseIdentifier: "ForecastSingleDayCell")
+
+        tb.backgroundColor = .lightGray
+        
+        self.view.addSubview(tb)
+        
+        tb.snp.makeConstraints { make in
+            make.top.equalTo(self.currentTempLabel.snp.bottom).offset(15)
+            make.bottom.equalToSuperview()
+            make.left.right.equalToSuperview()
+        }
+        
+        return tb
     }
 }
