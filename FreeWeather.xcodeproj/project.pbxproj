@@ -11,7 +11,6 @@
 		F42D8EDD2B7BE72700B19C06 /* UIColor-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42D8EDC2B7BE72700B19C06 /* UIColor-Extension.swift */; };
 		F47635E02B7B8DE40015F4A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47635DF2B7B8DE40015F4A2 /* AppDelegate.swift */; };
 		F47635E22B7B8DE40015F4A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47635E12B7B8DE40015F4A2 /* SceneDelegate.swift */; };
-		F47635E42B7B8DE40015F4A2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47635E32B7B8DE40015F4A2 /* ViewController.swift */; };
 		F47635E92B7B8DE50015F4A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F47635E82B7B8DE50015F4A2 /* Assets.xcassets */; };
 		F47635EC2B7B8DE50015F4A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47635EA2B7B8DE50015F4A2 /* LaunchScreen.storyboard */; };
 		F47635F52B7BAD5B0015F4A2 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47635F42B7BAD5B0015F4A2 /* NetworkManager.swift */; };
@@ -27,7 +26,6 @@
 		F47635DC2B7B8DE40015F4A2 /* FreeWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F47635DF2B7B8DE40015F4A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F47635E12B7B8DE40015F4A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F47635E32B7B8DE40015F4A2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F47635E82B7B8DE50015F4A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F47635EB2B7B8DE50015F4A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F47635ED2B7B8DE50015F4A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -73,6 +71,23 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		F42D8EDE2B7BE75D00B19C06 /* AppLevel */ = {
+			isa = PBXGroup;
+			children = (
+				F47635DF2B7B8DE40015F4A2 /* AppDelegate.swift */,
+				F47635E12B7B8DE40015F4A2 /* SceneDelegate.swift */,
+			);
+			path = AppLevel;
+			sourceTree = "<group>";
+		};
+		F42D8EDF2B7BE77B00B19C06 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F47635E82B7B8DE50015F4A2 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		F47635D32B7B8DE40015F4A2 = {
 			isa = PBXGroup;
 			children = (
@@ -94,13 +109,11 @@
 		F47635DE2B7B8DE40015F4A2 /* FreeWeather */ = {
 			isa = PBXGroup;
 			children = (
-				F42D8EDB2B7BE71000B19C06 /* Extensions */,
+				F42D8EDE2B7BE75D00B19C06 /* AppLevel */,
 				F47635F62B7BB7FF0015F4A2 /* Models */,
 				F47635F32B7BAD4A0015F4A2 /* Networking */,
-				F47635DF2B7B8DE40015F4A2 /* AppDelegate.swift */,
-				F47635E12B7B8DE40015F4A2 /* SceneDelegate.swift */,
-				F47635E32B7B8DE40015F4A2 /* ViewController.swift */,
-				F47635E82B7B8DE50015F4A2 /* Assets.xcassets */,
+				F42D8EDB2B7BE71000B19C06 /* Extensions */,
+				F42D8EDF2B7BE77B00B19C06 /* Resources */,
 				F47635EA2B7B8DE50015F4A2 /* LaunchScreen.storyboard */,
 				F47635ED2B7B8DE50015F4A2 /* Info.plist */,
 			);
@@ -240,7 +253,6 @@
 			files = (
 				F47635FA2B7BD39F0015F4A2 /* NetworkConstants.swift in Sources */,
 				F47635F52B7BAD5B0015F4A2 /* NetworkManager.swift in Sources */,
-				F47635E42B7B8DE40015F4A2 /* ViewController.swift in Sources */,
 				F47635E02B7B8DE40015F4A2 /* AppDelegate.swift in Sources */,
 				F47635E22B7B8DE40015F4A2 /* SceneDelegate.swift in Sources */,
 				F42D8EDD2B7BE72700B19C06 /* UIColor-Extension.swift in Sources */,

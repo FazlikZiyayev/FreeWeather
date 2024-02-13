@@ -5,7 +5,7 @@
 //  Created by Fazlik Ziyaev on 13/02/24.
 //
 
-import Foundation
+import UIKit
 
 extension UIColor
 {
