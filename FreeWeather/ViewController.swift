@@ -15,7 +15,5 @@ class ViewController: UIViewController {
         
         self.view.backgroundColor = .red
     }
-
-
 }
 
