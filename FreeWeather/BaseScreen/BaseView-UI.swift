@@ -73,7 +73,7 @@ extension BaseViewController
         tb.dataSource = self
         tb.register(ForecastSingleDayCell.self, forCellReuseIdentifier: "ForecastSingleDayCell")
 
-        tb.backgroundColor = .lightGray
+        tb.backgroundColor = .white
         
         self.view.addSubview(tb)
         
