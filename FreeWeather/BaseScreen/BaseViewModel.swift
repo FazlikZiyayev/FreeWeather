@@ -15,13 +15,20 @@ class BaseViewModel
     var location: Observable<String> = Observable("--")
     var currentTemp: Observable<String> = Observable("-°C")
     
-    var forecastResponse: Observable<ForecastResponse?> = Observable(nil)
+    var forecastResponse: Observable<ForecastResponse> = Observable(ForecastResponse(forecast: Forecast(forecastday: [])))
     
     
     
-    func getCurrentTemp() -> String?
+    func getForecastDaysCount() -> Int
     {
-        return self.currentTemp.value
+        self.forecastResponse.value?.forecast.forecastday.count ?? 0
+    }
+    
+    
+    
+    func getForecastDayFor(index: Int) -> ForecastDay?
+    {
+        return index > self.getForecastDaysCount() ? nil : self.forecastResponse.value?.forecast.forecastday[index]
     }
     
     

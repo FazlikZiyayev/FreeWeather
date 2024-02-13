@@ -36,6 +36,29 @@ class BaseViewController: UIViewController
         
         self.setup_view()
     }
+    
+    
+    
+    func dayName(from dateString: String) -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        if let date = dateFormatter.date(from: dateString) {
+            let calendar = Calendar.current
+            
+            if calendar.isDateInToday(date) {
+                return "Today"
+            } else if calendar.isDateInTomorrow(date) {
+                return "Tomorrow"
+            } else {
+                let dayFormatter = DateFormatter()
+                dayFormatter.dateFormat = "EEEE"
+                return dayFormatter.string(from: date)
+            }
+        } else {
+            return nil
+        }
+    }
 }
 
 
@@ -93,12 +116,7 @@ extension BaseViewController: UITableViewDelegate, UITableViewDataSource
 {
     // MARK: UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let safeForecastResponse = self.baseViewModel.forecastResponse.value
-        {
-            return safeForecastResponse?.forecast.forecastday.count ?? 0
-        }
-        
-        return 0
+        return self.baseViewModel.getForecastDaysCount()
     }
     
     
@@ -106,10 +124,10 @@ extension BaseViewController: UITableViewDelegate, UITableViewDataSource
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ForecastSingleDayCell", for: indexPath)
         
-        if let safeForecast = self.baseViewModel.forecastResponse.value,
-           let safeForecastDay = safeForecast?.forecast.forecastday[indexPath.row]
+        if let safeDay = self.baseViewModel.getForecastDayFor(index: indexPath.row),
+           let safeDayName = self.dayName(from: safeDay.date)
         {
-            cell.textLabel?.text = "\(String(safeForecastDay.date))"
+            cell.textLabel?.text = safeDayName + ":   \(safeDay.day.mintemp_c)°C / \(safeDay.day.maxtemp_c)°C"
         }
         
         return cell
