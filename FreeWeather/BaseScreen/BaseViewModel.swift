@@ -16,6 +16,7 @@ protocol BaseViewModelProtocol
     
     var forecastResponse: Observable<ForecastResponse> { get set }
     
+    func getReachabilityObj() -> Reachability?
     func getForecastDaysCount() -> Int
     func getForecastDayFor(index: Int) -> ForecastDay?
     
@@ -28,7 +29,7 @@ protocol BaseViewModelProtocol
 final class BaseViewModel: BaseViewModelProtocol
 {
     private var apiManager: APIManagerProtocol = APIManager()
-    private let reachability = try? Reachability()
+    let reachability = try? Reachability()
 
     
     var location: Observable<String> = Observable("--")
@@ -36,6 +37,11 @@ final class BaseViewModel: BaseViewModelProtocol
     
     var forecastResponse: Observable<ForecastResponse> = Observable(ForecastResponse(forecast: Forecast(forecastday: [])))
     
+    
+    func getReachabilityObj() -> Reachability?
+    {
+        return self.reachability
+    }
     
     
     func getForecastDaysCount() -> Int

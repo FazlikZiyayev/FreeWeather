@@ -23,6 +23,10 @@ class BaseViewController: UIViewController
     {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(networkStatusChanged),
+                                               name: .reachabilityChanged,
+                                               object: self.baseViewModel.getReachabilityObj())
+        
         self.baseViewModel.fetchCurrentTemp()
         self.baseViewModel.fetchForecastDays()
         
@@ -36,6 +40,14 @@ class BaseViewController: UIViewController
         super.viewWillAppear(animated)
         
         self.setup_view()
+    }
+    
+    
+    
+    @objc func networkStatusChanged()
+    {
+        self.baseViewModel.fetchCurrentTemp()
+        self.baseViewModel.fetchForecastDays()
     }
 }
 
