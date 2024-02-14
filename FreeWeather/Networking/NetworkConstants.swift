@@ -11,6 +11,7 @@ class NetworkConstants
 {
     static let shared = NetworkConstants()
     
+    // MARK: Put the key that I have sent
     public var apiKey: String
     {
         get {
