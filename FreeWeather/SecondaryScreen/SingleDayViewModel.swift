@@ -9,5 +9,18 @@ import Foundation
 
 class SingleDayViewModel
 {
+    var singleDay: Observable<ForecastDay?> = Observable(nil)
     
+    
+    func setSingleDay(singleDay: ForecastDay)
+    {
+        self.singleDay.value = singleDay
+    }
+    
+    
+    
+    func getSingleDay() -> ForecastDay?
+    {
+        return self.singleDay.value ?? nil
+    }
 }
