@@ -10,7 +10,7 @@ import UIKit
 
 class BaseViewController: UIViewController
 {
-    let baseViewModel = BaseViewModel()
+    let baseViewModel: BaseViewModelProtocol = BaseViewModel()
     
     var locationLabel = UILabel()
     var currentTempLabel = UILabel()

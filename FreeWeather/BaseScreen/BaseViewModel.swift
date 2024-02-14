@@ -8,9 +8,25 @@
 import Foundation
 
 
-class BaseViewModel
+protocol BaseViewModelProtocol
 {
-    var apiManager: APIManagerProtocol = APIManager()
+    var location: Observable<String> { get set }
+    var currentTemp: Observable<String> { get set }
+    
+    var forecastResponse: Observable<ForecastResponse> { get set }
+    
+    func getForecastDaysCount() -> Int
+    func getForecastDayFor(index: Int) -> ForecastDay?
+    
+    func fetchCurrentTemp()
+    func fetchForecastDays()
+}
+
+
+
+final class BaseViewModel: BaseViewModelProtocol
+{
+    private var apiManager: APIManagerProtocol = APIManager()
     
     var location: Observable<String> = Observable("--")
     var currentTemp: Observable<String> = Observable("-°C")
