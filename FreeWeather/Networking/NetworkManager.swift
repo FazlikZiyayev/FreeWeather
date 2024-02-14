@@ -71,6 +71,14 @@ class APIManager: APIManagerProtocol
                 return
             }
             
+            // MARK: Saving successfull responses into cache memory
+            if let safeResponse = response.response,
+               let safeRequest = response.request
+            {
+                let cachedResponse = CachedURLResponse(response: safeResponse, data: data)
+                URLCache.shared.storeCachedResponse(cachedResponse, for: safeRequest)
+            }
+            
             completion(.success(data))
         }
     }

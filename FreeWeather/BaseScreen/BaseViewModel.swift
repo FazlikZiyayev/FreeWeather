@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Reachability
 
 
 protocol BaseViewModelProtocol
@@ -27,6 +28,8 @@ protocol BaseViewModelProtocol
 final class BaseViewModel: BaseViewModelProtocol
 {
     private var apiManager: APIManagerProtocol = APIManager()
+    private let reachability = try? Reachability()
+
     
     var location: Observable<String> = Observable("--")
     var currentTemp: Observable<String> = Observable("-°C")
@@ -55,8 +58,32 @@ final class BaseViewModel: BaseViewModelProtocol
         let baseUrl = NetworkConstants.shared.serverEndpoint
         
         guard let safeUrl = URL(string: baseUrl + "current.json?key=" + apiKey + "&q=Uzbekistan") else { return }
+        let request = URLRequest(url: safeUrl)
         
-        self.apiManager.fetchDataViaAlamofire(from: safeUrl, headers: nil)
+        
+        if let connection = reachability?.connection, connection == .unavailable
+        {
+            if let cachedResponse = URLCache.shared.cachedResponse(for: request) 
+            {
+                do {
+                    let result = try JSONDecoder().decode(WeatherResponse.self, from: cachedResponse.data)
+                    self.location.value = result.location.name
+                    self.currentTemp.value = "\(Int(result.current.temp_c))"
+                    
+                } catch {
+                    print(error)
+                }
+            }
+        } else {
+            self.fetchCurrentTemp_fromNework(url: safeUrl)
+        }
+    }
+    
+    
+    
+    private func fetchCurrentTemp_fromNework(url: URL)
+    {
+        self.apiManager.fetchDataViaAlamofire(from: url, headers: nil)
         { [weak self] result in
             
             guard let self = self else { return }
@@ -87,8 +114,30 @@ final class BaseViewModel: BaseViewModelProtocol
         let baseUrl = NetworkConstants.shared.serverEndpoint
         
         guard let safeUrl = URL(string: baseUrl + "forecast.json?key=" + apiKey + "&q=Uzbekistan&days=10") else { return }
+        let request = URLRequest(url: safeUrl)
+
         
-        self.apiManager.fetchDataViaAlamofire(from: safeUrl, headers: nil)
+        if let connection = reachability?.connection, connection == .unavailable
+        {
+            if let cachedResponse = URLCache.shared.cachedResponse(for: request)
+            {
+                do {
+                    let result = try JSONDecoder().decode(ForecastResponse.self, from: cachedResponse.data)
+                    self.forecastResponse.value = result
+                } catch {
+                    print(error)
+                }
+            }
+        } else {
+            self.fetchForecastDays_fromNetwork(url: safeUrl)
+        }
+    }
+    
+    
+    
+    private func fetchForecastDays_fromNetwork(url: URL)
+    {
+        self.apiManager.fetchDataViaAlamofire(from: url, headers: nil)
         { [weak self] result in
             
             guard let self = self else { return }
