@@ -16,6 +16,8 @@ protocol BaseViewModelProtocol
     
     var forecastResponse: Observable<ForecastResponse> { get set }
     
+    func setRowsLimit(limit: Int)
+    
     func getReachabilityObj() -> Reachability?
     func getForecastDaysCount() -> Int
     func getForecastDayFor(index: Int) -> ForecastDay?
@@ -31,11 +33,18 @@ final class BaseViewModel: BaseViewModelProtocol
     private var apiManager: APIManagerProtocol = APIManager()
     let reachability = try? Reachability()
 
+    var rowsLimit = 7
     
     var location: Observable<String> = Observable("--")
     var currentTemp: Observable<String> = Observable("-°C")
     
     var forecastResponse: Observable<ForecastResponse> = Observable(ForecastResponse(forecast: Forecast(forecastday: [])))
+    
+    
+    func setRowsLimit(limit: Int)
+    {
+        self.rowsLimit = limit
+    }
     
     
     func getReachabilityObj() -> Reachability?
@@ -119,7 +128,7 @@ final class BaseViewModel: BaseViewModelProtocol
         let apiKey = NetworkConstants.shared.apiKey
         let baseUrl = NetworkConstants.shared.serverEndpoint
         
-        guard let safeUrl = URL(string: baseUrl + "forecast.json?key=" + apiKey + "&q=Uzbekistan&days=10") else { return }
+        guard let safeUrl = URL(string: baseUrl + "forecast.json?key=" + apiKey + "&q=Uzbekistan&days=\(self.rowsLimit)") else { return }
         let request = URLRequest(url: safeUrl)
 
         

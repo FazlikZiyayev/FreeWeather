@@ -15,6 +15,7 @@ extension BaseViewController
     {
         self.locationLabel = self.create_locationLabel()
         self.currentTempLabel = self.create_currentTempLabel()
+        self.limitStackView = self.create_limitStackView()
         
         self.forecastDaysTableView = self.create_forecastDaysTableView()
     }
@@ -66,6 +67,44 @@ extension BaseViewController
     
     
     
+    func create_limitStackView() -> UIStackView {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.spacing = 8
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.view.addSubview(stackView)
+        
+        // Create buttons
+        let arr = [3,7,10]
+        for i in arr {
+            let button = UIButton(type: .system)
+            button.tag = i
+            button.setTitle("\(i)", for: .normal)
+            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+            button.tintColor = UIColor.black
+            button.layer.borderWidth = 1.0
+            button.layer.borderColor = UIColor.black.cgColor
+            button.layer.cornerRadius = 12
+            button.addTarget(self, action: #selector(limitBtnPressed), for: .touchUpInside)
+            
+            stackView.addArrangedSubview(button)
+        }
+        
+        
+        stackView.snp.makeConstraints { make in
+            make.top.equalTo(self.currentTempLabel.snp.bottom).offset(15)
+            make.left.right.equalToSuperview().inset(16)
+            make.height.equalTo(50)
+        }
+        
+        
+        return stackView
+    }
+    
+    
+    
     func create_forecastDaysTableView() -> UITableView
     {
         let tb = UITableView()
@@ -78,7 +117,7 @@ extension BaseViewController
         self.view.addSubview(tb)
         
         tb.snp.makeConstraints { make in
-            make.top.equalTo(self.currentTempLabel.snp.bottom).offset(15)
+            make.top.equalTo(self.limitStackView.snp.bottom)
             make.bottom.equalToSuperview()
             make.left.right.equalToSuperview()
         }

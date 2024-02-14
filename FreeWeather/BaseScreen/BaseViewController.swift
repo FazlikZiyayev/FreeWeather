@@ -15,6 +15,8 @@ class BaseViewController: UIViewController
     var locationLabel = UILabel()
     var currentTempLabel = UILabel()
     
+    var limitStackView = UIStackView()
+    
     var forecastDaysTableView = UITableView()
     
     
@@ -47,6 +49,14 @@ class BaseViewController: UIViewController
     @objc func networkStatusChanged()
     {
         self.baseViewModel.fetchCurrentTemp()
+        self.baseViewModel.fetchForecastDays()
+    }
+    
+    
+    
+    @objc func limitBtnPressed(btn: UIButton)
+    {
+        self.baseViewModel.setRowsLimit(limit: btn.tag)
         self.baseViewModel.fetchForecastDays()
     }
 }
