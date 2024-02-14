@@ -7,7 +7,19 @@
 
 import Foundation
 
-class SingleDayViewModel
+
+
+protocol SingleDayViewModelProtocol
+{
+    var singleDay: Observable<ForecastDay?> { get set }
+    
+    func setSingleDay(singleDay: ForecastDay)
+    func getSingleDay() -> ForecastDay?
+}
+
+
+
+final class SingleDayViewModel: SingleDayViewModelProtocol
 {
     var singleDay: Observable<ForecastDay?> = Observable(nil)
     

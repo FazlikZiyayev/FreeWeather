@@ -9,7 +9,7 @@ import UIKit
 
 class SingleDayViewController: UIViewController 
 {
-    let singleDayViewModel = SingleDayViewModel()
+    let singleDayViewModel: SingleDayViewModelProtocol = SingleDayViewModel()
     
     var forecastHoursTableView = UITableView()
 

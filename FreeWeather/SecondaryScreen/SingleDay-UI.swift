@@ -19,6 +19,7 @@ extension SingleDayViewController
     func create_forecastHoursTableView() -> UITableView
     {
         let tb = UITableView()
+        tb.delegate = self
         tb.dataSource = self
         tb.register(ForecastSingleDayCell.self, forCellReuseIdentifier: "ForecastHourCell")
 
