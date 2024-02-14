@@ -14,7 +14,7 @@ class NetworkConstants
     public var apiKey: String
     {
         get {
-            return "015832e5c6df4045b3c124359241302"
+            return ""
         }
     }
     
