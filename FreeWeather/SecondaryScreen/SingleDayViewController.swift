@@ -67,9 +67,10 @@ extension SingleDayViewController
 
 
 
-extension SingleDayViewController: UITableViewDataSource
+extension SingleDayViewController: UITableViewDelegate, UITableViewDataSource
 {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int 
+    // MARK: UITableViewDataSource
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return self.singleDayViewModel.getSingleDay()?.hour.count ?? 0
     }
@@ -90,5 +91,13 @@ extension SingleDayViewController: UITableViewDataSource
         
         
         return cell
+    }
+    
+    
+    
+    // MARK: UITableViewDelegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) 
+    {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

@@ -12,6 +12,7 @@ class SingleDayViewModel
     var singleDay: Observable<ForecastDay?> = Observable(nil)
     
     
+    
     func setSingleDay(singleDay: ForecastDay)
     {
         self.singleDay.value = singleDay
