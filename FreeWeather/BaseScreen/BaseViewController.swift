@@ -18,6 +18,7 @@ class BaseViewController: UIViewController
     var forecastDaysTableView = UITableView()
     
     
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -126,7 +127,7 @@ extension BaseViewController: UITableViewDelegate, UITableViewDataSource
         let cell = tableView.dequeueReusableCell(withIdentifier: "ForecastSingleDayCell", for: indexPath)
         
         if let safeDay = self.baseViewModel.getForecastDayFor(index: indexPath.row),
-           let safeDayName = self.dayName(from: safeDay.date)
+           let safeDayName = safeDay.date.dayName()
         {
             cell.textLabel?.text = safeDayName + ":   \(safeDay.day.mintemp_c)°C / \(safeDay.day.maxtemp_c)°C"
         }
@@ -140,5 +141,13 @@ extension BaseViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        
+        if let safeSingleDay = self.baseViewModel.getForecastDayFor(index: indexPath.row)
+        {
+            let vc = SingleDayViewController()
+            vc.configuration(singleDay: safeSingleDay)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
