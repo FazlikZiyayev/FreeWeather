@@ -37,29 +37,6 @@ class BaseViewController: UIViewController
         
         self.setup_view()
     }
-    
-    
-    
-    func dayName(from dateString: String) -> String? 
-    {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        if let date = dateFormatter.date(from: dateString)
-        {
-            let calendar = Calendar.current
-            
-            if calendar.isDateInToday(date) { return "Today" }
-            else if calendar.isDateInTomorrow(date) { return "Tomorrow" }
-            else {
-                let dayFormatter = DateFormatter()
-                dayFormatter.dateFormat = "EEEE"
-                return dayFormatter.string(from: date)
-            }
-        } else {
-            return nil
-        }
-    }
 }
 
 
